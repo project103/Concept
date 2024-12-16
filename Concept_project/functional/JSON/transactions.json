@@ -1,0 +1,188 @@
+[
+    {
+        "category": "Food",
+        "amount": 50.0,
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "category": "Entertainment",
+        "amount": 100.0,
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "category": "Salary",
+        "amount": 200.0,
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "category": "Food",
+        "amount": 50.0,
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "category": "Entertainment",
+        "amount": 100.0,
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "category": "Salary",
+        "amount": 200.0,
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "category": "Food",
+        "amount": 10.0,
+        "type": "Income",
+        "date": "20-10-2023"
+    },
+    {
+        "category": "food",
+        "amount": 200.0,
+        "type": "Expense",
+        "date": "2024-4-4"
+    },
+    {
+        "category": "Food",
+        "amount": 20.0,
+        "type": "Income",
+        "date": "2024-4-5"
+    },
+    {
+        "category": "Food",
+        "amount": 20.0,
+        "type": "Expense",
+        "date": "2004-5-4"
+    },
+    {
+        "category": "Food",
+        "amount": 30.0,
+        "type": "Expense",
+        "date": "2003-5-4"
+    },
+    {
+        "category": "Salary",
+        "amount": 30.0,
+        "type": "Income",
+        "date": "2003-4-4"
+    },
+    {
+        "category": "Food",
+        "amount": 200.0,
+        "type": "Expense",
+        "date": "2005-4-5"
+    },
+    {
+        "category": "Salary",
+        "amount": 2000.0,
+        "type": "Income",
+        "date": "2003-4-5"
+    },
+    {
+        "category": "Food",
+        "amount": 10.0,
+        "type": "Income",
+        "date": "2003-4-5"
+    },
+    {
+        "category": "Food",
+        "amount": 20000.0,
+        "type": "Expense",
+        "date": "2003-4-4"
+    },
+    {
+        "category": "Food",
+        "amount": 20000.0,
+        "type": "Expense",
+        "date": "2003-4-5"
+    },
+    {
+        "category": "Food",
+        "amount": 20000.0,
+        "type": "Expense",
+        "date": "2003-4-5"
+    },
+    {
+        "category": "Rent",
+        "amount": 400.0,
+        "type": "Income",
+        "date": "2005-4-5"
+    },
+    {
+        "category": "Food",
+        "amount": 200.0,
+        "type": "Expense",
+        "date": "2006-9-8"
+    },
+    {
+        "category": "Rent",
+        "amount": 5000.0,
+        "type": "Expense",
+        "date": "2006-9-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 400.0,
+        "type": "Expense",
+        "date": "2008-5-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 2000.0,
+        "type": "Expense",
+        "date": "2010-5-6"
+    },
+    {
+        "category": "Food",
+        "amount": 300.0,
+        "type": "Expense",
+        "date": "2009-8-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 500.0,
+        "type": "Expense",
+        "date": "2004-6-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 1000.0,
+        "type": "Expense",
+        "date": "2004-5-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 500.0,
+        "type": "Expense",
+        "date": "2005-6-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 500.0,
+        "type": "Expense",
+        "date": "2005-5-8"
+    },
+    {
+        "category": "Rent",
+        "amount": 600.0,
+        "type": "Expense",
+        "date": "2004-5-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 600.0,
+        "type": "Expense",
+        "date": "2004-6-9"
+    },
+    {
+        "category": "Rent",
+        "amount": 200.0,
+        "type": "Expense",
+        "date": "2003-5-8"
+    }
+]

@@ -1,0 +1,26 @@
+{
+    "Total spending": "Total spending (from beginning to now): 72550.00",
+    "Total spending by categories": [
+        "Total Spending of Food: 60850.00",
+        "Total Spending of Entertainment: 200.00",
+        "Total Spending of food: 200.00",
+        "Total Spending of Rent: 11300.00"
+    ],
+    "Total spending insights": [
+        {
+            "category": "Food",
+            "insight": "No spending data available for Food in the previous month."
+        },
+        {
+            "category": "Entertainment",
+            "insight": "No spending data available for Entertainment in the previous month."
+        }
+    ],
+    "Total_spending_for_year_2023": "Total spending for year 2023: 0.00",
+    "Total_spending_for_year_2024": "Total spending for year 2024: 500.00",
+    "For day": "Total spending for day 07/12/2024: 0.00",
+    "For 2 days": "Total Spending (from 7/11/2024 to 7/12/2024): 300.00",
+    "for month": "Total Spending in Month 12: 300.00",
+    "for minth and category": "Total Spending of Food in 12/2024: 100.00",
+    "for 1 insugths": "No spending data available for Food in the previous month of 12-2024."
+}

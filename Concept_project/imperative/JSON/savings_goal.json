@@ -1,0 +1,38 @@
+[
+    {
+        "name": "bb",
+        "target_amount": 20.0,
+        "target_date": "2025-4-2",
+        "progress": 0
+    },
+    {
+        "name": "Food",
+        "target_amount": 1000.0,
+        "target_date": "2025-4-4",
+        "progress": 50.0
+    },
+    {
+        "name": "my car",
+        "target_amount": 211.0,
+        "target_date": "2025-4-2",
+        "progress": 0
+    },
+    {
+        "name": "my",
+        "target_amount": 2000.0,
+        "target_date": "2025-4-3",
+        "progress": 210.0
+    },
+    {
+        "name": "4",
+        "target_amount": 200.0,
+        "target_date": "2025-4-5",
+        "progress": 0
+    },
+    {
+        "name": "bbbb",
+        "target_amount": 2000.0,
+        "target_date": "2025-4-4",
+        "progress": 0
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "category": "Food",
+        "limit": 3000000.0,
+        "spent": 73000.0,
+        "month": 12,
+        "Limit": 1000.0
+    },
+    {
+        "category": "Rent",
+        "limit": 2000.0,
+        "spent": 5812.0,
+        "month": 12,
+        "Limit": 5000.0
+    },
+    {
+        "category": "Entertainment",
+        "limit": 200.0,
+        "spent": 50.0,
+        "month": 12
+    },
+    {
+        "category": "Other",
+        "limit": 200.0,
+        "spent": 50.0,
+        "month": 12
+    }
+]

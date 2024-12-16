@@ -1,0 +1,98 @@
+[
+    {
+        "amount": 50.0,
+        "category": "Food",
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "amount": 100.0,
+        "category": "Entertainment",
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "amount": 200.0,
+        "category": "Salary",
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "amount": 50.0,
+        "category": "Food",
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "amount": 100.0,
+        "category": "Entertainment",
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "amount": 200.0,
+        "category": "Salary",
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "category": "",
+        "amount": 10.0,
+        "type": "Expense",
+        "date": "10-4-2003"
+    },
+    {
+        "category": "Food",
+        "amount": 10.0,
+        "type": "Income",
+        "date": "20-10-2023"
+    },
+    {
+        "amount": 50.0,
+        "category": "Food",
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "amount": 100.0,
+        "category": "Entertainment",
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "amount": 200.0,
+        "category": "Salary",
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "amount": 50.0,
+        "category": "Food",
+        "type": "Expense",
+        "date": "2024-12-01"
+    },
+    {
+        "amount": 100.0,
+        "category": "Entertainment",
+        "type": "Expense",
+        "date": "2024-12-02"
+    },
+    {
+        "amount": 200.0,
+        "category": "Salary",
+        "type": "Income",
+        "date": "2024-12-03"
+    },
+    {
+        "category": "",
+        "amount": 10.0,
+        "type": "Expense",
+        "date": "10-4-2003"
+    },
+    {
+        "category": "Food",
+        "amount": 10.0,
+        "type": "Income",
+        "date": "20-10-2023"
+    }
+]
