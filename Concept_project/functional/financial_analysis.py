@@ -19,6 +19,9 @@ def load_database_from_file():
     global transaction_database
     transaction_database = load_data(transaction_file_path)
 
+def display_transactions():
+    print("Current Transaction Database:")
+    format_transactions(transaction_database)
 
 
 ############
@@ -35,7 +38,7 @@ def calculate_string_length(s, count=0):
 def find_separator_position(s, index=0):
     if index >= calculate_string_length(s): 
         return -1 
-    if s[index] in ['-']:
+    if s[index] in ['-', '/']:
         return index
     return find_separator_position(s, index + 1)
 
@@ -358,6 +361,7 @@ def capture_display_transactions():
     output_data['for month']=sum_spending_for_month(12)
     output_data['for minth and category']=sum_spending_in_category_and_month("Food","12-2024",True)
     output_data["for 1 insugths"]=generate_spending_insights("Food","12-2024")
+    output_data["for another insigths"]=generate_spending_insights("Entertainment","12/2024")
 
 
     return output_data

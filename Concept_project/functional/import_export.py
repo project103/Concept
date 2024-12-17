@@ -10,6 +10,7 @@ from financial_analysis import get_length
 
 TRANSACTION_FIELDS = ["amount", "category", "type", "date"]
 DATABASE_FILE = r"F:\study\level 4\Concept\Concept_project (2)\Concept_project\functional\JSON\transactions.json"
+financial_file = r"F:\study\level 4\Concept\Concept_project (2)\Concept_project\functional\JSON\report2.json"
 
 def check_fields(fields: List[str], transaction: Dict[str, Union[str, float]]) -> bool:
     if not fields:
@@ -57,7 +58,6 @@ def import_from_json(
 
     if index < get_length(json_data):
         entry = json_data[index]
-        # Use recursion to create a new list instead of mutating
         if validate(entry):
             return import_from_json(file_path, validate, index + 1, data + [entry])
         return import_from_json(file_path, validate, index + 1, data)
@@ -65,8 +65,6 @@ def import_from_json(
     return data
 
 
-import csv
-from typing import Callable, List, Dict, Union
 
 def import_from_csv(
     file_path: str,
@@ -83,10 +81,9 @@ def import_from_csv(
 
     if index < get_length(rows):
         row = rows[index]
-        # Use recursion to create a new list instead of mutating
         if validate(row):
             return import_from_csv(file_path, validate, index + 1, data + [row])
-        return import_from_csv(file_path, validate, index + 1, data)
+        return import_from_csv(file_path, validate, index + 1, data)            
 
     return data
 
@@ -149,3 +146,36 @@ def export_transactions():
     except Exception as e:
         messagebox.showerror("Export Error", str(e))
 
+def export_financial():
+    transactions = load_database(financial_file)
+    if not transactions:
+        messagebox.showinfo("Export Error", "No transactions to export.")
+        return
+
+    file_path = filedialog.asksaveasfilename(
+        defaultextension=".json",
+        filetypes=[("JSON Files", "*.json")]
+    )
+    if not file_path:
+        return
+
+    try:
+        if file_path.endswith(".json"):
+            save_database(transactions, file_path)
+        elif file_path.endswith(".csv"):
+            with open(file_path, "w", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=TRANSACTION_FIELDS)
+                writer.writeheader()
+
+                def write_transaction(index: int):
+                    if index < get_length(transactions):
+                        writer.writerow(transactions[index])
+                        write_transaction(index + 1)
+
+                write_transaction(0)
+        else:
+            raise ValueError("Unsupported file format.")
+
+        messagebox.showinfo("Export Success", f"Exported financial file successfully to {file_path}.")
+    except Exception as e:
+        messagebox.showerror("Export Error", str(e))

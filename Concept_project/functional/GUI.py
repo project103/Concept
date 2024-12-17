@@ -11,7 +11,7 @@ from trans_budget import (
     handle_add_transaction, handle_view_all_transactions, handle_view_all_budgets, handle_update_budget
 )
 from import_export import (
-    import_transactions, export_transactions
+    import_transactions, export_transactions ,export_financial
 )
 from Saving_goals import (
     add_savings_goal, update_savings_goal_progress, view_savings_goals ,reset_all_goal_progress
@@ -107,6 +107,7 @@ class FinancialAnalysisApp:
     def setup_import_export_tab(self):
         ttk.Button(self.import_export_tab, text="Import Transactions", command=import_transactions).pack(pady=15)
         ttk.Button(self.import_export_tab, text="Export Transactions", command=export_transactions).pack(pady=15)
+        ttk.Button(self.import_export_tab, text="Export financial_file", command=export_financial).pack(pady=15)
 
     def clear_text(self):
         self.analysis_output_text.delete("1.0", tk.END)
