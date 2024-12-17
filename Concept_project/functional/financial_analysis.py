@@ -34,10 +34,10 @@ def calculate_string_length(s, count=0):
         return calculate_string_length(s, count + 1)
     return count
 
-# find the position of the separator 
+# find the position of the separator , it returns index of separator if it found
 def find_separator_position(s, index=0):
     if index >= calculate_string_length(s): 
-        return -1 
+        return -1              # separator not found
     if s[index] in ['-', '/']:
         return index
     return find_separator_position(s, index + 1)
@@ -74,7 +74,7 @@ def parse_int(s, start_pos, end_pos, current_sum=0):
 
     return parse_int(s, start_pos + 1, end_pos, current_sum * 10 + digit)
 
-# check date within range
+# check date within range, it returns True is the date is within range else returns False 
 def is_date_within_range(date, start_date, end_date):
     if start_date and end_date:
         return start_date <= date <= end_date
@@ -84,11 +84,11 @@ def is_date_within_range(date, start_date, end_date):
         return date <= end_date
     return True
 
-# check month
+# check month, returns True if month=0  (means get any month) or month = month in date else retuns False
 def is_in_month(date, month):
     return month == 0 or date.month == month
 
-# check category
+# check category, returns True if category="" (means get any category) or category = head_category else retuns False
 def is_in_category(category, head_category):
     return category == "" or head_category == category 
 
@@ -123,11 +123,14 @@ def calc_spending(transactions, category, start_date_str, end_date_str, month, c
 def sum_spending_for_year(year):
     start_date = datetime(year, 1, 1)
     end_date = datetime(year, 12, 31)
+
+    #strftime converts the date to string to match its result with database
     total_spending = calc_spending(transaction_database, "", start_date.strftime("%d/%m/%Y"), end_date.strftime("%d/%m/%Y"), 0)
     return f"Total spending for year {year}: {total_spending:.2f}"
 
 # sum spending for a specific day 
 def sum_spending_for_day(date_str):
+    # it converts the string to a datetime
     date = parse_date(date_str)
     if date:
         total_spending = calc_spending(transaction_database, "", date.strftime("%d/%m/%Y"), date.strftime("%d/%m/%Y"), 0)
@@ -201,15 +204,12 @@ def add_to_list(listt, element):
         return [listt[0]] + add_to_list(listt[1:], element)  
 
 # get categories
-def get_categories(transactions, x=None):
-    if x is None:
-        x = []
+def get_categories(transactions, x=()):
     if not transactions:
-        return x  
-
-    x = add_to_list(x, transactions[0]['category'])
+        return x
+    if transactions[0]['category'] not in x:
+        x = (*x, transactions[0]['category'])  # Create a new tuple
     return get_categories(transactions[1:], x)
-    
 
 # get length of list 
 def get_length(list):
