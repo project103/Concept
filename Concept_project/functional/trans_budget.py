@@ -52,35 +52,45 @@ def add_transaction(
     return updated_transactions, updated_budgets
 
 
+from typing import List, Dict, Any
+from tkinter import messagebox
+
 def update_budget(category: str, amount: float, budgets: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Update the budget for a specific category in a functional style."""
-    def update_budget_item(budget_item: Dict[str, Any]) -> Dict[str, Any]:
-        if budget_item["category"] == category:
-            new_spent = budget_item["spent"] + amount
-            if new_spent > budget_item["limit"]:
-                messagebox.showwarning(
-                    "Spending Limit Exceeded",
-                    f"You have exceeded the spending limit for {category}. "
-                    f"Your budget limit is {budget_item['limit']} and you are trying to spend {new_spent}."
-                )
-            # Return the updated budget item with the new 'spent' value
-            return {**budget_item, "spent": new_spent}
-        return budget_item
+    """Update the budget for a specific category using recursion."""
+    if not budgets:
+        return []  # Base case: return an empty list if there are no budgets left to process
 
-    # Create a new list by mapping the update function over the budgets
-    return list(map(update_budget_item, budgets))
+    head, *tail = budgets  # Split the list into head and tail
+
+    if head["category"] == category:
+        new_spent = head["spent"] + amount
+        if new_spent > head["limit"]:
+            messagebox.showwarning(
+                "Spending Limit Exceeded",
+                f"You have exceeded the spending limit for {category}. "
+                f"Your budget limit is {head['limit']} and you are trying to spend {new_spent}."
+            )
+        updated_item = {**head, "spent": new_spent}
+    else:
+        updated_item = head  # Keep the item unchanged if it's not the matching category
+
+    return [updated_item] + update_budget(category, amount, tail)  # Recur for the tail
+
+
 def update_budget_limit(category: str, amount: float, budgets: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Update the budget for a specific category in a functional style."""
-    def update_budget_item(budget_item: Dict[str, Any]) -> Dict[str, Any]:
-        if budget_item["category"] == category:
-            new_spent =  amount
+    """Update the budget limit for a specific category using recursion."""
+    if not budgets:
+        return []  # Base case: return an empty list if there are no budgets left to process
 
-            # Return the updated budget item with the new 'spent' value
-            return {**budget_item, "limit": new_spent}
-        return budget_item
+    head, *tail = budgets  # Split the list into head and tail
 
-    # Create a new list by mapping the update function over the budgets
-    return list(map(update_budget_item, budgets))
+    if head["category"] == category:
+        updated_item = {**head, "limit": amount}
+    else:
+        updated_item = head  # Keep the item unchanged if it's not the matching category
+
+    return [updated_item] + update_budget_limit(category, amount, tail)  # Recur for the tail
+
 
 # do date parsing
 def parse_date(date_str, formats=None):
