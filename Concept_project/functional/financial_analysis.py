@@ -370,16 +370,6 @@ load_database_from_file()
 save_output_to_file(capture_display_transactions())
 ###########################
 display_transactions()
-#sum_spending_for_year(2024)
-#generate_spending_insights("Food","2/2023")
-#sum_spending_in_category_and_date_range("Food","7/10-2023",True)
-#sum_spending_in_category_and_date_range("Food","7-10-2023",False)
-#print_total_spending()
-#sum_spending_for_month(3)
-#sum_spending_for_month(1)
-#sum_spending_for_month(5)
-#sum_spending_for_month(10)
-#sum_spending_in_category("Food")
 # ------------------------------------------------------------------------------------------
 import tkinter as tk
 from tkinter import ttk, messagebox

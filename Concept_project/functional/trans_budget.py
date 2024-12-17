@@ -99,15 +99,22 @@ def parse_date(date_str, formats=None):
             return parse_date(date_str, formats[1:])
 
 def format_transactions(transactions: List[Dict[str, Any]]) -> str:
-    return "\n".join(
-        f"{t['category']} | {t['amount']} | {t['type']} | {parse_date(t['date']).strftime('%d/%m/%Y')}" for t in transactions
-    )
+    if not transactions:
+        return ""
+    
+    transaction = transactions[0]
+    formatted_transaction = f"{transaction['category']} | {transaction['amount']} | {transaction['type']} | {parse_date(transaction['date']).strftime('%d/%m/%Y')}"
+    
+    return formatted_transaction + "\n" + format_transactions(transactions[1:])
 
-
-def format_budgets(budgets: List[Dict[str, Any]]) -> str:
-    return "\n".join(
-        f"Category: {b['category']}, Month: {b['month']}, Limit: {b['limit']}, Spent: {b['spent']}" for b in budgets
-    )
+def format_budgets(budgets: List[Dict[str, Any]], result: str = "") -> str:
+    if not budgets:
+        return result.strip()
+    
+    budget = budgets[0]
+    formatted_budget = f"Category: {budget['category']}, Month: {budget['month']}, Limit: {budget['limit']}, Spent: {budget['spent']}"
+    
+    return format_budgets(budgets[1:], result + formatted_budget + "\n")
 
 
 # GUI interaction functions
