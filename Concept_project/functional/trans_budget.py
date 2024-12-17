@@ -52,8 +52,7 @@ def add_transaction(
     return updated_transactions, updated_budgets
 
 
-from typing import List, Dict, Any
-from tkinter import messagebox
+
 
 def update_budget(category: str, amount: float, budgets: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Update the budget for a specific category using recursion."""

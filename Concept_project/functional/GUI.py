@@ -88,10 +88,6 @@ class FinancialAnalysisApp:
         self.date_entry.pack(pady=10)
         ttk.Button(self.analysis_tab, text="Calculate Daily Spending", command=self.calculate_daily_spending).pack(pady=20)
 
-        ttk.Label(self.analysis_tab, text="Enter Month (mm/yyyy):").pack(pady=10)
-        self.month_entry = ttk.Entry(self.analysis_tab, width=30, font=("Arial", 10))  # Larger input field, smaller font
-        self.month_entry.pack(pady=10)
-        ttk.Button(self.analysis_tab, text="Calculate Monthly Spending", command=self.calculate_monthly_spending).pack(pady=20)
 
         ttk.Label(self.analysis_tab, text="Enter Category and Month (Category, mm/yyyy):").pack(pady=10)
         self.category_month_entry = ttk.Entry(self.analysis_tab, width=30, font=("Arial", 10))  # Larger input field, smaller font
@@ -133,14 +129,7 @@ class FinancialAnalysisApp:
         except Exception as e:
             messagebox.showerror("Error", f"Failed to calculate daily spending: {e}")
 
-    def calculate_monthly_spending(self):
-        month = self.month_entry.get()
-        try:
-            month, year = map(int, month.split("/"))
-            result = sum_spending_for_month(month)
-            self.append_text(result, self.analysis_output_text)
-        except Exception as e:
-            messagebox.showerror("Error", f"Failed to calculate monthly spending: {e}")
+
 
     def generate_insights(self):
         category_month = self.category_month_entry.get()

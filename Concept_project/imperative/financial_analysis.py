@@ -12,8 +12,6 @@ class FinancialTransaction:
 # File path for the transactions database
 database_file_path = r"F:study\level 4\Concept\FinancialApp2\FinancialApp2\transactions.json"
 
-# Mutable collection for transactions
-financial_database = []
 
 def save_database_to_file():
     json_data = json.dumps([t.__dict__ for t in transaction_database])
