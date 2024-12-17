@@ -84,9 +84,27 @@ def reset_goal_progress(goal: SavingsGoal) -> SavingsGoal:
 
 def reset_all_goal_progress(file_path: str):
     savings_goals = load_savings_goals(file_path)
-    updated_goals = [reset_goal_progress(goal) for goal in savings_goals]
+
+    def recursive_reset(goals, index=0, length=None):
+        if length is None:
+            length = get_length(goals)
+        if index >= length:
+            return goals
+        goals[index] = reset_goal_progress(goals[index])
+        return recursive_reset(goals, index + 1, length)
+
+    def get_length(goals, index=0):
+        try:
+            goals[index]
+            return get_length(goals, index + 1)
+        except IndexError:
+            return index
+
+    updated_goals = recursive_reset(savings_goals)
     save_data(file_path, updated_goals)
     messagebox.showinfo("Success", "All savings goals have been reset to 0 progress.")
+
+
 
 def update_goal_progress(goal: SavingsGoal, progress_update: float) -> Optional[SavingsGoal]:
     new_progress = goal.progress + progress_update
@@ -110,19 +128,33 @@ def update_savings_goal_progress(file_path: str):
         return
 
     savings_goals = load_savings_goals(file_path)
-    updated_savings_goals = []
-    for goal in savings_goals:
+
+    def recursive_update(goals, index, length):
+        if index >= length:
+            return goals
+        goal = goals[index]
         if goal.name == goal_name:
             updated_goal = update_goal_progress(goal, progress_update)
             if updated_goal is None:
                 messagebox.showwarning("Update Error", "Invalid progress update. Check the target amount.")
-                return
-            updated_savings_goals.append(updated_goal)
-        else:
-            updated_savings_goals.append(goal)
+                return None  # Exit if there's an error
+            goals[index] = updated_goal
+        return recursive_update(goals, index + 1, length)
 
-    save_data(file_path, updated_savings_goals)
-    messagebox.showinfo("Success", f"Progress for '{goal_name}' updated successfully.")
+    def get_length(goals, index=0):
+        try:
+            goals[index]
+            return get_length(goals, index + 1)
+        except IndexError:
+            return index
+
+    length = get_length(savings_goals)
+    updated_savings_goals = recursive_update(savings_goals, 0, length)
+
+    if updated_savings_goals is not None:
+        save_data(file_path, updated_savings_goals)
+        messagebox.showinfo("Success", f"Progress for '{goal_name}' updated successfully.")
+
 
 def format_goal(goal: SavingsGoal) -> str:
     monthly_savings = calculate_monthly_savings(goal)
@@ -133,12 +165,33 @@ def format_goal(goal: SavingsGoal) -> str:
 
 def view_savings_goals(file_path: str, output_text: Text):
     savings_goals = load_savings_goals(file_path)
+    
+    def recursive_format(goals, index=0, result=""):
+        # Base case: if index is out of range
+        if not goals or index >= index_of_last_element(goals):
+            return result
+        goal_str = format_goal(goals[index])
+        return recursive_format(goals, index + 1, result + goal_str + "\n")
+    
+    def index_of_last_element(goals):
+        if not goals:
+            return -1
+        index = 0
+        try:
+            while True:
+                goals[index]
+                index += 1
+        except IndexError:
+            return index - 1
+
     if not savings_goals:
         formatted_goals = "No savings goals found."
     else:
-        formatted_goals = "\n".join(format_goal(goal) for goal in savings_goals)
+        formatted_goals = recursive_format(savings_goals).strip()
+    
     output_text.delete(1.0, 'end')
     output_text.insert('end', formatted_goals)
+
 
 def main_app():
     file_path = "savings_goals.json"
