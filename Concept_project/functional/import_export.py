@@ -1,7 +1,12 @@
+import sys
 from tkinter import filedialog, messagebox
 import json
 import csv
 from typing import List, Dict, Union, Callable
+sys.path.append(r"..\..\Concept_project\functional")
+
+# Import the necessary functions
+from financial_analysis import get_length
 
 TRANSACTION_FIELDS = ["amount", "category", "type", "date"]
 DATABASE_FILE = r"F:\study\level 4\Concept\Concept_project (2)\Concept_project\functional\JSON\transactions.json"
@@ -35,33 +40,56 @@ def save_database(data: List[Dict[str, Union[str, float]]], file_path: str) -> N
     with open(file_path, "w") as f:
         json.dump(data, f, indent=4)
 
-def import_from_json(file_path: str, validate: Callable, index: int = 0, data: List[Dict[str, Union[str, float]]] = None) -> List[Dict[str, Union[str, float]]]:
+import json
+from typing import Callable, List, Dict, Union
+
+def import_from_json(
+    file_path: str,
+    validate: Callable,
+    index: int = 0,
+    data: List[Dict[str, Union[str, float]]] = None
+) -> List[Dict[str, Union[str, float]]]:
     if data is None:
         data = []
-        
+
     with open(file_path, "r") as f:
         json_data = json.load(f)
 
-    if index < len(json_data):
+    if index < get_length(json_data):
         entry = json_data[index]
+        # Use recursion to create a new list instead of mutating
         if validate(entry):
-            data.append(entry)
+            return import_from_json(file_path, validate, index + 1, data + [entry])
         return import_from_json(file_path, validate, index + 1, data)
     
     return data
 
-def import_from_csv(file_path: str, validate: Callable, index: int = 0, data: List[Dict[str, Union[str, float]]] = None) -> List[Dict[str, Union[str, float]]]:
+
+import csv
+from typing import Callable, List, Dict, Union
+
+def import_from_csv(
+    file_path: str,
+    validate: Callable,
+    index: int = 0,
+    data: List[Dict[str, Union[str, float]]] = None
+) -> List[Dict[str, Union[str, float]]]:
     if data is None:
         data = []
+
     with open(file_path, "r") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
-    if index < len(rows):
+
+    if index < get_length(rows):
         row = rows[index]
+        # Use recursion to create a new list instead of mutating
         if validate(row):
-            data.append(row)
+            return import_from_csv(file_path, validate, index + 1, data + [row])
         return import_from_csv(file_path, validate, index + 1, data)
+
     return data
+
 
 
 def import_transactions():
@@ -83,7 +111,7 @@ def import_transactions():
         updated_transactions = current_transactions + imported_transactions
         save_database(updated_transactions, DATABASE_FILE)
 
-        messagebox.showinfo("Import Success", f"Imported {len(imported_transactions)} transactions successfully.")
+        messagebox.showinfo("Import Success", f"Imported {get_length(imported_transactions)} transactions successfully.")
     except Exception as e:
         messagebox.showerror("Import Error", str(e))
 
@@ -109,7 +137,7 @@ def export_transactions():
                 writer.writeheader()
 
                 def write_transaction(index: int):
-                    if index < len(transactions):
+                    if index < get_length(transactions):
                         writer.writerow(transactions[index])
                         write_transaction(index + 1)
 

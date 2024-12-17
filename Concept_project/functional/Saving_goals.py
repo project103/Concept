@@ -10,7 +10,7 @@ def load_savings_goals(file_path: str) -> List[SavingsGoal]:
     def recursive_load(data):
         if not data:
             return []
-        return [SavingsGoal(**data[0])] + recursive_load(data[1:])
+        x =  [SavingsGoal(**data[0])] + recursive_load(data[1:])
     try:
         with open(file_path, "r") as file:
             data = json.load(file)
@@ -173,16 +173,14 @@ def view_savings_goals(file_path: str, output_text: Text):
         goal_str = format_goal(goals[index])
         return recursive_format(goals, index + 1, result + goal_str + "\n")
     
-    def index_of_last_element(goals):
-        if not goals:
-            return -1
-        index = 0
-        try:
-            while True:
-                goals[index]
-                index += 1
-        except IndexError:
-            return index - 1
+    def index_of_last_element(goals, index=0):
+     if not goals:  
+        return -1
+     try:
+        goals[index]  
+        return index_of_last_element(goals, index + 1)  
+     except IndexError:
+        return index - 1  
 
     if not savings_goals:
         formatted_goals = "No savings goals found."
@@ -193,21 +191,3 @@ def view_savings_goals(file_path: str, output_text: Text):
     output_text.insert('end', formatted_goals)
 
 
-def main_app():
-    file_path = "savings_goals.json"
-
-    root = Tk()
-    root.title("Savings Goal Tracker")
-
-    output_text = Text(root, height=20, width=80)
-    output_text.pack()
-
-    Button(root, text="View All Goals", command=lambda: view_savings_goals(file_path, output_text)).pack()
-    Button(root, text="Add Savings Goal", command=lambda: add_savings_goal(file_path)).pack()
-    Button(root, text="Update Goal Progress", command=lambda: update_savings_goal_progress(file_path)).pack()
-    Button(root, text="Reset All Progress", command=lambda: reset_all_goal_progress(file_path)).pack()
-
-    root.mainloop()
-
-if __name__ == "__main__":
-    main_app()

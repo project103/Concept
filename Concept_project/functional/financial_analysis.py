@@ -19,9 +19,6 @@ def load_database_from_file():
     global transaction_database
     transaction_database = load_data(transaction_file_path)
 
-def display_transactions():
-    print("Current Transaction Database:")
-    format_transactions(transaction_database)
 
 
 ############
@@ -38,7 +35,7 @@ def calculate_string_length(s, count=0):
 def find_separator_position(s, index=0):
     if index >= calculate_string_length(s): 
         return -1 
-    if s[index] in ['-', '/']:
+    if s[index] in ['-']:
         return index
     return find_separator_position(s, index + 1)
 
