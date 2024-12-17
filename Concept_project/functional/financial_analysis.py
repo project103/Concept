@@ -8,8 +8,6 @@ sys.path.append(r"..\..\Concept_project\functional")
 # Import the necessary functions
 from trans_budget import load_data, save_data, format_transactions, parse_date
 
-
-
 transaction_file_path=r"F:\study\level 4\Concept\Concept_project (2)\Concept_project\functional\JSON\transactions.json"
 
 def save_database_to_file():
@@ -204,12 +202,14 @@ def add_to_list(listt, element):
         return [listt[0]] + add_to_list(listt[1:], element)  
 
 # get categories
-def get_categories(transactions, x=()):
+def get_categories(transactions, x=None):
+    if x is None:
+        x = []
     if not transactions:
-        return x
-    if transactions[0]['category'] not in x:
-        x = (*x, transactions[0]['category'])  # Create a new tuple
-    return get_categories(transactions[1:], x)
+        return x  
+
+    return get_categories(transactions[1:], add_to_list(x, transactions[0]['category']))
+
 
 # get length of list 
 def get_length(list):
@@ -359,8 +359,8 @@ def capture_display_transactions():
     output_data["For day"]= sum_spending_for_day("7/12/2024")
     output_data["For 2 days"]= sum_spending_in_date_range("7/11/2024","7/12/2024")
     output_data['for month']=sum_spending_for_month(12)
-    output_data['for minth and category']=sum_spending_in_category_and_month("Food","12-2024",True)
-    output_data["for 1 insugths"]=generate_spending_insights("Food","12-2024")
+    output_data['for month and category']=sum_spending_in_category_and_month("Food","12-2024",True)
+    output_data["for 1 insigths"]=generate_spending_insights("Food","12-2024")
     output_data["for another insigths"]=generate_spending_insights("Entertainment","12/2024")
 
 
